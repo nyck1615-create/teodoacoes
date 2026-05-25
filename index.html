@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ajude o Teo — Bebê de 6 meses luta contra enfisema pulmonar</title>
+<meta name="description" content="Teo, um bebê de apenas 6 meses, está internado lutando contra enfisema pulmonar grave. Sua doação pode salvar a vida dele. Doe agora pelo PIX oficial." />
+<meta property="og:title" content="Ajude o Teo a continuar vivendo" />
+<meta property="og:description" content="Com 6 meses, Teo luta diariamente pela vida. Sua doação pode dar a ele a chance de crescer." />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    background: #f3f7fb;
+    color: #111c3b;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { cursor: pointer; border: none; font-family: inherit; }
+  .container { width: 100%; max-width: 1152px; margin: 0 auto; padding: 0 16px; }
+
+  /* Alert bar */
+  .alert-bar {
+    background: #d44;
+    color: #fff;
+  }
+  .alert-inner { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 16px; font-size: 14px; font-weight: 500; text-align: center; }
+  .alert-inner svg { flex-shrink: 0; width: 20px; height: 20px; }
+
+  /* Header */
+  .header {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(243,247,251,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; color: #1e3a8a; font-size: 16px; }
+  .logo svg { width: 24px; height: 24px; color: #e23636; animation: pulse-heart 1.6s ease-in-out infinite; }
+  .btn-cta {
+    background: linear-gradient(135deg, #e63b3b, #f0694a);
+    color: #fff;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    font-size: 14px;
+    box-shadow: 0 10px 30px -10px rgba(30,58,138,0.25);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .btn-cta:hover { opacity: 0.95; transform: scale(1.02); }
+  .btn-cta-lg { padding: 14px 32px; font-size: 18px; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #eef4fb, #dce8f5); overflow: hidden; }
+  .hero-inner { display: grid; grid-template-columns: 1fr; gap: 40px; padding: 48px 0; align-items: center; }
+  @media (min-width: 768px) { .hero-inner { grid-template-columns: 1fr 1fr; padding: 80px 0; gap: 40px; } }
+  .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.06); border-radius: 9999px; padding: 5px 14px; font-size: 13px; font-weight: 600; color: #1e3a8a; margin-bottom: 20px; }
+  .badge svg { width: 16px; height: 16px; }
+  .hero h1 { font-size: 36px; font-weight: 800; line-height: 1.15; color: #1e3a8a; letter-spacing: -0.02em; }
+  @media (min-width: 768px) { .hero h1 { font-size: 56px; } }
+  .hero p { font-size: 18px; color: #4a5568; margin-top: 20px; line-height: 1.7; }
+  @media (min-width: 768px) { .hero p { font-size: 20px; } }
+  .hero-actions { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+  @media (min-width: 640px) { .hero-actions { flex-direction: row; } }
+  .donor-pill { display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 9999px; padding: 10px 16px; font-size: 14px; }
+  .donor-avatars { display: flex; }
+  .donor-avatars span { width: 28px; height: 28px; border-radius: 50%; border: 2px solid #fff; margin-left: -8px; }
+  .donor-avatars span:first-child { margin-left: 0; }
+  .donor-pill .count { font-weight: 700; color: #111c3b; }
+  .hero-img-wrap { position: relative; }
+  .hero-img-wrap::before {
+    content: ''; position: absolute; inset: -16px;
+    background: linear-gradient(135deg, rgba(100,149,237,0.3), rgba(30,58,138,0.2));
+    filter: blur(30px); border-radius: 24px;
+  }
+  .hero-img { position: relative; border-radius: 24px; box-shadow: 0 10px 30px -10px rgba(30,58,138,0.25); width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+
+  /* Story */
+  .story { padding: 64px 0; }
+  @media (min-width: 768px) { .story { padding: 96px 0; } }
+  .story h2 { font-size: 32px; font-weight: 800; color: #1e3a8a; text-align: center; margin-bottom: 32px; }
+  @media (min-width: 768px) { .story h2 { font-size: 48px; } }
+  .story-text { max-width: 768px; margin: 0 auto; font-size: 18px; line-height: 1.75; color: rgba(17,28,59,0.9); }
+  .story-text p + p { margin-top: 20px; }
+  .story-box {
+    max-width: 768px; margin: 40px auto 0;
+    background: rgba(200,215,235,0.4); border-left: 4px solid #60a5fa;
+    border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px -4px rgba(30,58,138,0.15);
+  }
+  .story-box h3 { font-size: 20px; font-weight: 700; color: #1e3a8a; margin-bottom: 16px; }
+  @media (min-width: 768px) { .story-box h3 { font-size: 22px; } }
+  .story-box ul { display: grid; grid-template-columns: 1fr; gap: 12px; list-style: none; }
+  @media (min-width: 640px) { .story-box ul { grid-template-columns: 1fr 1fr; } }
+  .story-box li { display: flex; align-items: flex-start; gap: 8px; color: rgba(17,28,59,0.9); }
+  .story-box li svg { width: 20px; height: 20px; color: #60a5fa; flex-shrink: 0; margin-top: 3px; }
+  .story-cta {
+    max-width: 768px; margin: 32px auto 0;
+    background: linear-gradient(135deg, #1a3278, #2b55a3); color: #fff;
+    border-radius: 16px; padding: 32px; text-align: center;
+    box-shadow: 0 10px 30px -10px rgba(30,58,138,0.25);
+  }
+  .story-cta svg { width: 40px; height: 40px; margin: 0 auto 12px; animation: pulse-heart 1.6s ease-in-out infinite; }
+  .story-cta p { font-size: 20px; font-weight: 700; }
+  @media (min-width: 768px) { .story-cta p { font-size: 24px; } }
+
+  /* Gallery */
+  .gallery { background: rgba(200,215,235,0.25); padding: 64px 0; }
+  @media (min-width: 768px) { .gallery { padding: 80px 0; } }
+  .gallery h2 { font-size: 28px; font-weight: 800; color: #1e3a8a; text-align: center; margin-bottom: 40px; }
+  @media (min-width: 768px) { .gallery h2 { font-size: 36px; } }
+  .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (min-width: 768px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .gallery-grid img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 20px -4px rgba(30,58,138,0.15); transition: transform 0.5s; }
+  .gallery-grid img:hover { transform: scale(1.05); }
+
+  /* Pix section */
+  .pix-section { background: linear-gradient(135deg, #1a3278, #2b55a3); color: #fff; padding: 64px 0; text-align: center; }
+  @media (min-width: 768px) { .pix-section { padding: 96px 0; } }
+  .pix-section svg { width: 48px; height: 48px; animation: pulse-heart 1.6s ease-in-out infinite; margin: 0 auto; }
+  .pix-section h2 { font-size: 36px; font-weight: 800; margin-top: 16px; }
+  @media (min-width: 768px) { .pix-section h2 { font-size: 48px; } }
+  .pix-section > .container > p { font-size: 18px; opacity: 0.9; margin-top: 16px; }
+  .pix-card {
+    max-width: 640px; margin: 32px auto 0;
+    background: #fff; color: #111c3b; border-radius: 24px;
+    padding: 24px; text-align: left; box-shadow: 0 10px 30px -10px rgba(30,58,138,0.25);
+  }
+  @media (min-width: 768px) { .pix-card { padding: 32px; } }
+  .pix-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; font-weight: 600; }
+  .pix-row { display: flex; flex-direction: column; gap: 12px; margin-top: 8px; align-items: stretch; }
+  @media (min-width: 640px) { .pix-row { flex-direction: row; align-items: center; } }
+  .pix-key {
+    flex: 1; background: #f3f7fb; border-radius: 12px; padding: 12px 16px;
+    font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace; font-size: 16px;
+    color: #1e3a8a; font-weight: 600; word-break: break-all;
+  }
+  .pix-btn { display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .pix-btn svg { width: 20px; height: 20px; animation: none; margin: 0; }
+  .pix-info { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+  @media (min-width: 640px) { .pix-info { grid-template-columns: 1fr 1fr; } }
+  .pix-info div { border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 12px; }
+  .pix-info div p:first-child { font-size: 13px; color: #6b7280; }
+  .pix-info div p:last-child { font-weight: 600; color: #111c3b; margin-top: 4px; }
+  .pix-quote { max-width: 640px; margin: 32px auto 0; font-size: 18px; font-style: italic; opacity: 0.95; }
+  @media (min-width: 768px) { .pix-quote { font-size: 20px; } }
+
+  /* ONG */
+  .ong { padding: 64px 0; }
+  @media (min-width: 768px) { .ong { padding: 96px 0; } }
+  .ong-inner { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; }
+  @media (min-width: 768px) { .ong-inner { grid-template-columns: auto 1fr; gap: 48px; } }
+  .ong-logo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 30px -10px rgba(30,58,138,0.25); margin: 0 auto; }
+  @media (min-width: 768px) { .ong-logo { width: 224px; height: 224px; } }
+  .ong-badge { display: inline-flex; align-items: center; gap: 6px; background: #e2eaf5; border-radius: 9999px; padding: 4px 12px; font-size: 12px; font-weight: 600; color: #1e3a8a; margin-bottom: 12px; }
+  .ong-badge svg { width: 16px; height: 16px; }
+  .ong h2 { font-size: 28px; font-weight: 800; color: #1e3a8a; }
+  @media (min-width: 768px) { .ong h2 { font-size: 36px; } }
+  .ong p { margin-top: 16px; color: rgba(17,28,59,0.9); line-height: 1.75; }
+  .ong-box { margin-top: 20px; background: rgba(200,215,235,0.4); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 20px; font-weight: 700; color: #1e3a8a; }
+  .ong-email { margin-top: 20px; display: flex; align-items: center; gap: 8px; color: rgba(17,28,59,0.9); }
+  .ong-email svg { width: 20px; height: 20px; color: #60a5fa; }
+  .ong-email a { font-weight: 700; color: #1e3a8a; text-decoration: underline; }
+
+  /* Testimonials */
+  .testimonials { background: rgba(200,215,235,0.25); padding: 64px 0; }
+  @media (min-width: 768px) { .testimonials { padding: 96px 0; } }
+  .testimonials h2 { font-size: 28px; font-weight: 800; color: #1e3a8a; text-align: center; margin-bottom: 40px; }
+  @media (min-width: 768px) { .testimonials h2 { font-size: 36px; } }
+  .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .testimonials-grid { grid-template-columns: 1fr 1fr; } }
+  .testimonial {
+    background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: 16px;
+    padding: 24px; box-shadow: 0 4px 20px -4px rgba(30,58,138,0.15);
+  }
+  .testimonial-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .testimonial-user { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar {
+    width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 700; font-size: 16px; background: linear-gradient(135deg, #1a3278, #2b55a3);
+  }
+  .testimonial-name { font-weight: 700; color: #111c3b; }
+  .testimonial-status { font-size: 12px; color: #6b7280; }
+  .testimonial-value { font-size: 14px; font-weight: 700; color: #60a5fa; }
+  .testimonial-body { display: flex; gap: 8px; margin-top: 12px; color: rgba(17,28,59,0.9); }
+  .testimonial-body svg { width: 16px; height: 16px; color: #60a5fa; flex-shrink: 0; margin-top: 3px; }
+  .testimonials-cta { text-align: center; margin-top: 40px; }
+
+  /* Footer */
+  .footer { background: #1e3a8a; color: #fff; padding: 48px 0; text-align: center; }
+  .footer svg { width: 32px; height: 32px; margin: 0 auto 12px; animation: pulse-heart 1.6s ease-in-out infinite; }
+  .footer-quote { font-size: 24px; font-weight: 800; font-style: italic; }
+  @media (min-width: 768px) { .footer-quote { font-size: 30px; } }
+  .footer-info { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 768px; margin: 24px auto 0; font-size: 14px; opacity: 0.9; }
+  @media (min-width: 640px) { .footer-info { grid-template-columns: repeat(3, 1fr); } }
+  .footer-info div { display: flex; align-items: flex-start; gap: 6px; justify-content: center; }
+  .footer-info svg { width: 16px; height: 16px; animation: none; margin: 2px 0 0 0; flex-shrink: 0; }
+  .footer-copy { margin-top: 24px; font-size: 12px; opacity: 0.7; }
+
+  /* Animations */
+  @keyframes pulse-heart { 0%,100%{transform:scale(1)} 50%{transform:scale(1.08)} }
+  @keyframes fade-up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  .fade-up { animation: fade-up 0.8s ease-out both; }
+  .delay-1 { animation-delay: 0.15s; }
+  .delay-2 { animation-delay: 0.3s; }
+
+  /* SVG icons inline */
+  .icon-heart { fill: currentColor; }
+  .icon-outline { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<!-- Alert bar -->
+<div class="alert-bar">
+  <div class="container alert-inner">
+    <svg class="icon-outline" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span>Este é o <strong>ÚNICO site oficial</strong> para ajudar o Teo. Qualquer outro site, link ou PIX em nome dele é <strong>GOLPE</strong>. Doe somente por aqui.</span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="logo">
+      <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <span>Ajude o Teo</span>
+    </div>
+    <button class="btn-cta" onclick="scrollToDonate()">QUERO AJUDAR O TEO</button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="fade-up">
+      <div class="badge">
+        <svg viewBox="0 0 24 24" class="icon-outline"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Campanha urgente · 6 meses de vida
+      </div>
+      <h1>Teo precisa da sua ajuda para continuar vivendo.</h1>
+      <p>Com apenas <strong>6 meses de vida</strong>, Teo luta diariamente contra um <strong>enfisema pulmonar grave</strong>. Internado há semanas, ele precisa urgentemente de um tratamento adequado e de um convênio médico para continuar recebendo atendimento especializado.</p>
+      <div class="hero-actions">
+        <button class="btn-cta btn-cta-lg" onclick="scrollToDonate()">❤️ DOAR AGORA</button>
+        <div class="donor-pill">
+          <div class="donor-avatars">
+            <span style="background:#60a5fa"></span>
+            <span style="background:#3b82f6"></span>
+            <span style="background:#1e40af"></span>
+          </div>
+          <span class="count">+<span id="donorCount">4.382</span> pessoas</span>
+          <span style="color:#6b7280">já ajudaram o Teo</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-img-wrap fade-up delay-1">
+      <img src="assets/teo-hospital-1.jpg" alt="Bebê Teo internado no hospital" class="hero-img" />
+    </div>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="story">
+  <div class="container">
+    <h2>A história da Sarah e do pequeno Teo</h2>
+    <div class="story-text">
+      <p>A Sarah nunca imaginou que viveria algo tão doloroso. Enquanto outras mães planejavam os primeiros passos de seus filhos, ela passou os últimos meses dormindo em cadeiras de hospital, ouvindo aparelhos respiratórios e rezando para o Teo sobreviver mais uma noite.</p>
+      <p>Cada bipe do monitor é um lembrete de que a vida do filho dela está por um fio. Cada madrugada parece eterna. Sarah já chorou tantas vezes que perdeu a conta — mas nunca soltou a mão do Teo. Nem por um segundo.</p>
+      <p>O diagnóstico veio cedo demais: <strong>enfisema pulmonar grave</strong>. Os pulmões do Teo, ainda tão pequeninos, não conseguem trabalhar sozinhos. Ele precisa de medicação contínua, exames frequentes, acompanhamento especializado e, principalmente, de um convênio médico que garanta a continuidade do tratamento.</p>
+      <p>Sarah é uma mãe solo. Trabalhava como podia, mas teve que largar tudo para ficar ao lado do filho. Hoje, ela enfrenta o medo de perder o Teo e, ao mesmo tempo, a impotência diante de contas que crescem a cada dia. Os custos médicos são altos demais para qualquer família comum suportar sozinha.</p>
+      <p>É aqui que <strong>você</strong> entra nessa história. A solidariedade de pessoas como você é, hoje, a maior esperança do Teo.</p>
+    </div>
+    <div class="story-box">
+      <h3>Toda doação será utilizada <u>exclusivamente</u> para:</h3>
+      <ul>
+        <li><svg viewBox="0 0 24 24" class="icon-outline"><polyline points="20 6 9 17 4 12"/></svg>Pagamento do convênio médico</li>
+        <li><svg viewBox="0 0 24 24" class="icon-outline"><polyline points="20 6 9 17 4 12"/></svg>Medicamentos contínuos</li>
+        <li><svg viewBox="0 0 24 24" class="icon-outline"><polyline points="20 6 9 17 4 12"/></svg>Exames especializados</li>
+        <li><svg viewBox="0 0 24 24" class="icon-outline"><polyline points="20 6 9 17 4 12"/></svg>Continuidade do tratamento pulmonar</li>
+      </ul>
+    </div>
+    <div class="story-cta">
+      <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+      <p>Qualquer valor faz diferença. Uma pequena ajuda pode salvar a vida do Teo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery">
+  <div class="container">
+    <h2>Momentos da luta do Teo</h2>
+    <div class="gallery-grid">
+      <img src="assets/teo-hospital-1.jpg" alt="Teo - momento 1" />
+      <img src="assets/teo-hospital-2.webp" alt="Teo - momento 2" />
+      <img src="assets/teo-hospital-1.jpg" alt="Teo - momento 3" />
+      <img src="assets/teo-hospital-2.webp" alt="Teo - momento 4" />
+      <img src="assets/teo-hospital-1.jpg" alt="Teo - momento 5" />
+      <img src="assets/teo-hospital-2.webp" alt="Teo - momento 6" />
+    </div>
+  </div>
+</section>
+
+<!-- Pix / Doação -->
+<section class="pix-section" id="doar">
+  <div class="container">
+    <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    <h2>Faça sua doação agora</h2>
+    <p>Use a chave PIX abaixo. Toda contribuição vai direto para o tratamento do Teo.</p>
+
+    <div class="pix-card">
+      <p class="pix-label">Chave PIX (E-mail)</p>
+      <div class="pix-row">
+        <div class="pix-key" id="pixKey">teodoacoes@gmail.com</div>
+        <button class="btn-cta pix-btn" id="copyBtn" onclick="copyPix()">
+          <svg id="copyIcon" viewBox="0 0 24 24" class="icon-outline"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          <svg id="checkIcon" viewBox="0 0 24 24" class="icon-outline" style="display:none"><polyline points="20 6 9 17 4 12"/></svg>
+          <span id="copyText">COPIAR CHAVE</span>
+        </button>
+      </div>
+      <div class="pix-info">
+        <div>
+          <p>Banco</p>
+          <p>Mercado Pago</p>
+        </div>
+        <div>
+          <p>Recebedora</p>
+          <p>Sarah Cristina (Mãe do Teo)</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="pix-quote">“Talvez você nunca conheça o Teo pessoalmente. Mas sua ajuda pode dar a ele a chance de crescer, brincar e viver.”</p>
+  </div>
+</section>
+
+<!-- ONG -->
+<section class="ong">
+  <div class="container ong-inner">
+    <img src="assets/coracao-solidario-logo.png" alt="ONG Coração Solidário" class="ong-logo" />
+    <div>
+      <div class="ong-badge">
+        <svg viewBox="0 0 24 24" class="icon-outline"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        ONG Digital · Coração Solidário
+      </div>
+      <h2>Solidariedade que transforma</h2>
+      <p>A <strong>Coração Solidário</strong> é uma ONG digital criada com o propósito de ajudar famílias que enfrentam situações extremamente difíceis e não possuem condições financeiras ou conhecimento para divulgar suas histórias. Nosso trabalho é utilizar os meios digitais para alcançar pessoas solidárias dispostas a transformar vidas através da empatia.</p>
+      <div class="ong-box">
+        Todo valor arrecadado nesta campanha será destinado EXCLUSIVAMENTE ao tratamento do Teo.
+      </div>
+      <p class="ong-email">
+        <svg viewBox="0 0 24 24" class="icon-outline"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Mensagens de apoio e comprovantes: <a href="mailto:teodoacoes@gmail.com">teodoacoes@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="testimonials">
+  <div class="container">
+    <h2>Mensagens de quem já ajudou o Teo</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <p class="testimonial-name">Mariana S.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 50,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Acabei de doar. Que Deus abençoe o Teo 🙏</p>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">J</div>
+            <div>
+              <p class="testimonial-name">Juliana R.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 100,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Sou mãe e chorei lendo essa história. Espero que ele fique bem.</p>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <p class="testimonial-name">Carlos M.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 20,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Doei pouco porque era o que eu podia, mas estou orando pelo Teo.</p>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">F</div>
+            <div>
+              <p class="testimonial-name">Fernanda A.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 250,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Compartilhei com toda minha família. Vamos ajudar esse bebê ❤️</p>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">R</div>
+            <div>
+              <p class="testimonial-name">Ricardo L.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 75,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Força, Sarah! Você não está sozinha nessa luta. Estamos com vocês.</p>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-header">
+          <div class="testimonial-user">
+            <div class="testimonial-avatar">P</div>
+            <div>
+              <p class="testimonial-name">Patrícia G.</p>
+              <p class="testimonial-status">Doação confirmada</p>
+            </div>
+          </div>
+          <span class="testimonial-value">R$ 150,00</span>
+        </div>
+        <div class="testimonial-body">
+          <svg viewBox="0 0 24 24" class="icon-outline"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/></svg>
+          <p>Acordei pensando no Teo. Que esse anjinho tenha muita saúde 🙏❤️</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-cta">
+      <button class="btn-cta btn-cta-lg" onclick="scrollToDonate()">❤️ JUNTAR-SE A ELES E DOAR</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    <p class="footer-quote">“Enquanto houver esperança, haverá luta.”</p>
+    <div class="footer-info">
+      <div>
+        <svg viewBox="0 0 24 24" class="icon-outline"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Campanha solidária oficial</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" class="icon-outline"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>100% transparente · uso exclusivo no tratamento</span>
+      </div>
+      <div>
+        <svg viewBox="0 0 24 24" class="icon-outline"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:teodoacoes@gmail.com">teodoacoes@gmail.com</a>
+      </div>
+    </div>
+    <p class="footer-copy">© <span id="year"></span> Coração Solidário · Solidariedade que transforma</p>
+  </div>
+</footer>
+
+<script>
+  // Counter
+  let donors = 4382;
+  const donorEl = document.getElementById('donorCount');
+  setInterval(() => {
+    donors++;
+    donorEl.textContent = donors.toLocaleString('pt-BR');
+  }, 9000);
+
+  // Copy PIX
+  function copyPix() {
+    const key = document.getElementById('pixKey').textContent;
+    navigator.clipboard.writeText(key).then(() => {
+      document.getElementById('copyIcon').style.display = 'none';
+      document.getElementById('checkIcon').style.display = 'inline';
+      document.getElementById('copyText').textContent = 'COPIADO!';
+      setTimeout(() => {
+        document.getElementById('copyIcon').style.display = 'inline';
+        document.getElementById('checkIcon').style.display = 'none';
+        document.getElementById('copyText').textContent = 'COPIAR CHAVE';
+      }, 2500);
+    }).catch(() => {});
+  }
+
+  // Scroll to donate
+  function scrollToDonate() {
+    document.getElementById('doar').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

@@ -255,7 +255,7 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
       <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       <span>Ajude o Teo</span>
     </div>
-    <button class="btn-cta" onclick="scrollToDonate()">QUERO AJUDAR O TEO</button>
+    <button <button class="btn-cta pix-btn" id="copyBtn" onclick="copyPix()">QUERO AJUDAR O TEO</button>
   </div>
 </header>
 
@@ -550,22 +550,29 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
 </script>
 <script>
 
-// evento view content
+// view content
 fbq('track', 'ViewContent');
 
-// botão copiar pix
+// função copiar pix
 function copyPix() {
 
-    navigator.clipboard.writeText('teodoacoes@gmail.com');
+    const pix = 'teodoacoes@gmail.com';
 
-    // evento meta
-    fbq('track', 'InitiateCheckout');
+    // copiar
+    navigator.clipboard.writeText(pix);
+
+    // evento initiate checkout
+    fbq('track', 'InitiateCheckout', {
+        content_name: 'Doacao Teo'
+    });
 
     // evento personalizado
     fbq('trackCustom', 'CopiouPix');
 
-    // muda texto
+    // mudar texto
     document.getElementById('copyText').innerText = 'PIX COPIADO!';
+
+    console.log('Evento enviado');
 }
 
 <script>

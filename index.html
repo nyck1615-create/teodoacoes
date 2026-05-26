@@ -519,44 +519,12 @@ onclick="trackDonateClick(); scrollToDonate();">
     <p class="footer-copy">© <span id="year"></span> Coração Solidário · Solidariedade que transforma</p>
   </div>
 </footer>
-
-<script>
-  // Counter
-  let donors = 4382;
-  const donorEl = document.getElementById('donorCount');
-  setInterval(() => {
-    donors++;
-    donorEl.textContent = donors.toLocaleString('pt-BR');
-  }, 9000);
-
-  // Copy PIX
-  function copyPix() {
-    const key = document.getElementById('pixKey').textContent;
-    navigator.clipboard.writeText(key).then(() => {
-      document.getElementById('copyIcon').style.display = 'none';
-      document.getElementById('checkIcon').style.display = 'inline';
-      document.getElementById('copyText').textContent = 'COPIADO!';
-      setTimeout(() => {
-        document.getElementById('copyIcon').style.display = 'inline';
-        document.getElementById('checkIcon').style.display = 'none';
-        document.getElementById('copyText').textContent = 'COPIAR CHAVE';
-      }, 2500);
-    }).catch(() => {});
-  }
-
-  // Scroll to donate
-  function scrollToDonate() {
-    document.getElementById('doar').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // Year
-  document.getElementById('year').textContent = new Date().getFullYear();
 <script>
 
-  // ViewContent
+  // Evento ao visualizar página
   fbq('track', 'ViewContent');
 
-  // Evento Donate
+  // Evento botão doar
   function trackDonateClick() {
     fbq('track', 'Donate');
   }
@@ -586,7 +554,7 @@ onclick="trackDonateClick(); scrollToDonate();">
 
       fbq('trackCustom', 'CopiouPix');
 
-      // UI
+      // Feedback visual
       document.getElementById('copyIcon').style.display = 'none';
       document.getElementById('checkIcon').style.display = 'inline';
       document.getElementById('copyText').innerText = 'PIX COPIADO!';
@@ -597,21 +565,22 @@ onclick="trackDonateClick(); scrollToDonate();">
         document.getElementById('copyText').innerText = 'COPIAR CHAVE';
       }, 2500);
 
-    }).catch(() => {
-      console.log('Erro ao copiar PIX');
+    }).catch((err) => {
+      console.log('Erro ao copiar PIX', err);
     });
   }
 
-  // Scroll
+  // Scroll suave
   function scrollToDonate() {
     document.getElementById('doar').scrollIntoView({
       behavior: 'smooth'
     });
   }
 
-  // Year
+  // Ano automático
   document.getElementById('year').textContent = new Date().getFullYear();
 
 </script>
+
 </body>
 </html>

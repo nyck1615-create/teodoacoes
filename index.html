@@ -24,7 +24,7 @@ fbq('track', 'PageView');
 
 <noscript>
 <img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
+src="https://www.facebook.com/tr?id=3333327903508438&ev=PageView&noscript=1"/>
 </noscript>
 <!-- End Meta Pixel Code -->
 <head>
@@ -255,7 +255,10 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
       <svg viewBox="0 0 24 24" class="icon-heart"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
       <span>Ajude o Teo</span>
     </div>
-    <button <button class="btn-cta pix-btn" id="copyBtn" onclick="copyPix()">QUERO AJUDAR O TEO</button>
+   <button class="btn-cta pix-btn"
+onclick="trackDonateClick(); scrollToDonate();">
+  QUERO AJUDAR O TEO
+</button>
   </div>
 </header>
 
@@ -270,7 +273,10 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
       <h1>Teo precisa da sua ajuda para continuar vivendo.</h1>
       <p>Com apenas <strong>6 meses de vida</strong>, Teo luta diariamente contra um <strong>enfisema pulmonar grave</strong>. Internado há semanas, ele precisa urgentemente de um tratamento adequado e de um convênio médico para continuar recebendo atendimento especializado.</p>
       <div class="hero-actions">
-        <button class="btn-cta btn-cta-lg" onclick="scrollToDonate()">❤️ DOAR AGORA</button>
+       <button class="btn-cta btn-cta-lg"
+onclick="trackDonateClick(); scrollToDonate();">
+  ❤️ DOAR AGORA
+</button>
         <div class="donor-pill">
           <div class="donor-avatars">
             <span style="background:#60a5fa"></span>
@@ -545,35 +551,67 @@ src="https://www.facebook.com/tr?id=SEU_PIXEL_ID&ev=PageView&noscript=1"/>
 
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
-</script>
 <script>
 
-// view content
-fbq('track', 'ViewContent');
+  // ViewContent
+  fbq('track', 'ViewContent');
 
-// função copiar pix
-function copyPix() {
+  // Evento Donate
+  function trackDonateClick() {
+    fbq('track', 'Donate');
+  }
+
+  // Counter
+  let donors = 4382;
+  const donorEl = document.getElementById('donorCount');
+
+  setInterval(() => {
+    donors++;
+    donorEl.textContent = donors.toLocaleString('pt-BR');
+  }, 9000);
+
+  // Copy PIX
+  function copyPix() {
 
     const pix = 'teodoacoes@gmail.com';
 
-    // copiar
-    navigator.clipboard.writeText(pix);
+    navigator.clipboard.writeText(pix).then(() => {
 
-    // evento initiate checkout
-    fbq('track', 'InitiateCheckout', {
+      // Eventos Meta
+      fbq('track', 'InitiateCheckout', {
         content_name: 'Doacao Teo'
+      });
+
+      fbq('track', 'AddPaymentInfo');
+
+      fbq('trackCustom', 'CopiouPix');
+
+      // UI
+      document.getElementById('copyIcon').style.display = 'none';
+      document.getElementById('checkIcon').style.display = 'inline';
+      document.getElementById('copyText').innerText = 'PIX COPIADO!';
+
+      setTimeout(() => {
+        document.getElementById('copyIcon').style.display = 'inline';
+        document.getElementById('checkIcon').style.display = 'none';
+        document.getElementById('copyText').innerText = 'COPIAR CHAVE';
+      }, 2500);
+
+    }).catch(() => {
+      console.log('Erro ao copiar PIX');
     });
+  }
 
-    // evento personalizado
-    fbq('trackCustom', 'CopiouPix');
+  // Scroll
+  function scrollToDonate() {
+    document.getElementById('doar').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 
-    // mudar texto
-    document.getElementById('copyText').innerText = 'PIX COPIADO!';
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    console.log('Evento enviado');
-}
-
-<script>
 </script>
 </body>
 </html>
